@@ -2,10 +2,11 @@ var express = require("express");
 var getJsonDate = require("./logic/urlToTime");
 
 var app = express();
+app.set("views", __dirname + "/views");
 
 app.get("/", function(req, res){
  
-  res.send("Default page");
+  res.render("index");
 });
 
 app.get("/*", function(req, res, next){
