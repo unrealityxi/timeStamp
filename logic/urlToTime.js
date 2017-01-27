@@ -3,7 +3,9 @@ var moment = require("moment");
 
 function app(query){
 
-  var momentDate = isNaN(query) ? moment(query) : moment.unix(query);
+
+
+  var momentDate = isNaN(query) ? moment(new Date(query)) : moment.unix(query);
   
   var unix;
   var natural;

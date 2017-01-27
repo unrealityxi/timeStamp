@@ -1,12 +1,17 @@
 var express = require("express");
 var getJsonDate = require("./logic/urlToTime");
+var port = process.env.PORT || 3000;
+
 
 var app = express();
-app.set("views", __dirname + "/views");
+
+app.use(express.static(__dirname + '/views'));
 
 app.get("/", function(req, res){
- 
-  res.render("index");
+  res.writeHead(200);
+  console.log("Attempting to send index.html");
+  res.sendFile("index.html");
+  res.end();
 });
 
 app.get("/*", function(req, res, next){
@@ -32,6 +37,8 @@ app.use(function(err, req, res, next) {
     return res.send("Bad data!");
 });
 
-app.listen(process.env.PORT || 8080);
+app.listen(port, function(){
+  console.log("Timestamp server listening at port: " + port);
+});
 
 
